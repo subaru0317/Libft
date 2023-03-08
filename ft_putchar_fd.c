@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:05:26 by smihata           #+#    #+#             */
-/*   Updated: 2023/02/27 17:13:05 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 10:56:03 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+	return ;
 }

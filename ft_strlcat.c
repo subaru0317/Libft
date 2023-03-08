@@ -6,13 +6,13 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:32:26 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/02 15:56:09 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:52:01 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t min(size_t x, size_t y)
+static size_t	min(size_t x, size_t y)
 {
 	if (x < y)
 		return (x);
@@ -25,6 +25,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	src_len;
 	size_t	i;
 
+	if (dst == NULL && dstsize == 0)
+		return (ft_strlen(src));
 	i = 0;
 	while (dst[i] && i < dstsize)
 		i++;

@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:24:15 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/02 14:03:38 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 10:56:45 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_bzero(void *b, size_t len)
 {
 	ft_memset(b, 0, len);
+	return ;
 }
