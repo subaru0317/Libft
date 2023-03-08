@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:03:14 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/08 16:58:50 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:08:26 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*dst;
 
+	if (!s1 || !set)
+		return (NULL);
 	if (*set == '\0')
 	{
 		dst = ft_strdup(s1);

@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:22:42 by takkatao          #+#    #+#             */
-/*   Updated: 2023/03/08 15:50:01 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:46:06 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	size_t 	little_len;
 
 	little_len = ft_strlen(little);
-	if (big == NULL || len < little_len)
+	if (len < little_len)
 		return (NULL);
 	big_index = 0;
 	if (*little) {
@@ -213,6 +213,14 @@ char	**ft_split(char const *s, char c)
 	int		substr_size;
 	char	**arr;
 	
+	if (!s)
+	{
+		arr = (char **)malloc(sizeof(char *));
+		if (!arr)
+			return (NULL);
+		*arr = NULL;
+		return (arr);
+	}
 	num_substr = cnt_substr(s, c);
 	i = 0;
 	j = 0;
@@ -328,8 +336,11 @@ int	ft_atoi(const char *nptr)
 {
 	char		c;
 	const char	*s;
-	int			minus;
-	long long		acc;
+	int			neg;
+	int			cutlim;
+	unsigned long	cutoff;
+	unsigned long	acc;
+	int			any;
 
 	s = nptr;
 	c = *s++;
@@ -337,32 +348,44 @@ int	ft_atoi(const char *nptr)
 		c = *s++;
 	if (c == '-')
 	{
-		minus = 1;
+		neg = 1;
 		c = *s++;
 	}
 	else
 	{
-		minus = 0;
+		neg = 0;
 		if (c == '+')
 			c = *s++;
 	}
+	if (neg)
+		cutoff = LONG_MIN;
+	else
+		cutoff = LONG_MAX;
+	cutlim = cutoff % 10;
+	cutoff /= 10;
 	acc = 0;
+	any = 0;
 	while (1)
 	{
 		if ('0' <= c && c <= '9')
 			c -= '0';
 		else
 			break ;
+		if (any < 0 || acc > cutoff || (acc == cutoff && c > cutlim)) // overflow
+		{
+			any = -1;
+			if (neg)
+				return ((int)LONG_MIN);
+			else
+				return ((int)LONG_MAX);
+		}
 		acc *= 10;
 		acc += c;
 		c = *s++;
+		any = 1;
 	}
-	if (minus)
+	if (neg)
 		acc *= -1;
-	if (acc > LONG_MAX)
-		return (LONG_MAX);
-	if (acc < LONG_MIN)
-		return (LONG_MIN);
 	return (acc);
 }
 
@@ -982,7 +1005,7 @@ int	testmain_strnstr(void)
 	my_test_strnstr(NULL,s2,0);
 	my_test_strnstr(NULL,NULL,0);
 	my_test_strnstr(s1,NULL,1);
-	my_test_strnstr(NULL,s2,1);
+	my_test_strnstr(NULL,s2,1); // OUT!
 	my_test_strnstr(NULL,NULL,1);
 	my_test_strnstr(s1,NULL,2);
 	my_test_strnstr(NULL,s2,2);

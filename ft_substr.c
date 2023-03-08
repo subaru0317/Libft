@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:13:19 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/08 17:00:03 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:09:25 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*dst;
 	size_t	s_len;
 
+	if (!s)
+		return (NULL);
 	s_len = ft_strlen(s);
 	dst = (char *)malloc(sizeof(char) * (min(len, s_len) + 1));
 	if (!dst)

@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:30:39 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/08 16:41:56 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:02:04 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ char	**ft_split(char const *s, char c)
 	size_t	num_substr;
 	char	**arr;
 
+	if (!s)
+	{
+		arr = (char **)malloc(sizeof(char *));
+		if (!arr)
+			return (NULL);
+		*arr = NULL;
+		return (arr);
+	}
 	num_substr = cnt_substr(s, c);
 	arr = (char **)ft_calloc(num_substr + 1, sizeof(char *));
 	if (!arr)

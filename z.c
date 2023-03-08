@@ -19,8 +19,11 @@ int	ft_atoi(const char *nptr)
 {
 	char		c;
 	const char	*s;
-	int			minus;
+	int			neg;
+	int			cutlim;
+	unsigned long	cutoff;
 	unsigned long	acc;
+	int			any;
 
 	s = nptr;
 	c = *s++;
@@ -28,27 +31,43 @@ int	ft_atoi(const char *nptr)
 		c = *s++;
 	if (c == '-')
 	{
-		minus = 1;
+		neg = 1;
 		c = *s++;
 	}
 	else
 	{
-		minus = 0;
+		neg = 0;
 		if (c == '+')
 			c = *s++;
 	}
+	if (neg)
+		cutoff = LONG_MIN;
+	else
+		cutoff = LONG_MAX;
+	cutlim = cutoff % 10;
+	cutoff /= 10;
 	acc = 0;
+	any = 0;
 	while (1)
 	{
 		if ('0' <= c && c <= '9')
 			c -= '0';
 		else
 			break ;
+		if (any < 0 || acc > cutoff || (acc == cutoff && c > cutlim)) // overflow
+		{
+			any = -1;
+			if (neg)
+				return ((int)LONG_MIN);
+			else
+				return ((int)LONG_MAX);
+		}
 		acc *= 10;
 		acc += c;
 		c = *s++;
+		any = 1;
 	}
-	if (minus)
+	if (neg)
 		acc *= -1;
 	return (acc);
 }
@@ -56,8 +75,6 @@ int	ft_atoi(const char *nptr)
 
 int main(void)
 {
-	printf("%ld\n", LONG_MAX);
-	// printf("%d\n", atoi("9223372036854775808"));
-	// printf("%d\n", ft_atoi("9223372036854775808"));
-	printf("%d\n", ft_atoi("-10"));
+	printf("%d\n", atoi("18446744073709551614"));
+	printf("%d\n", ft_atoi("18446744073709551614"));
 }

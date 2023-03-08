@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:00:53 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/08 16:53:19 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:11 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	little_len;
 
 	little_len = ft_strlen(little);
-	if (big == NULL || len < little_len)
+	if ((big != NULL && len < little_len) || (big == NULL && len == 0))
 		return (NULL);
 	big_index = 0;
 	if (*little)
