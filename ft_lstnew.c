@@ -6,13 +6,13 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:49:06 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/09 13:10:51 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:01:45 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*acc;
 
