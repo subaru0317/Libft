@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:45:17 by smihata           #+#    #+#             */
-/*   Updated: 2023/02/27 18:12:28 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/14 15:04:52 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memchr(const void *b, int c, size_t len)
 {
 	unsigned char	*b_ptr;
 	unsigned char	tmp;
-	int				i;
+	size_t			i;
 
 	b_ptr = (unsigned char *)b;
 	tmp = (unsigned char)c;
