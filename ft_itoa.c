@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:22:55 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/08 16:28:04 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/18 20:36:58 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,10 @@ char	*ft_itoa(int n)
 	}
 	n_tmp = n;
 	return (ft_itoa_exe(len, flag, n_tmp));
+}
+
+#include <stdio.h>
+int main(void)
+{
+	printf("%s\n", ft_itoa(0));
 }

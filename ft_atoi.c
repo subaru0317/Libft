@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:27:39 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/09 12:45:12 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 13:17:44 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,47 +29,47 @@ static int	ft_is_overflow_or_underflow(int sign)
 		return ((int)LONG_MAX);
 }
 
-static int	ft_atoi_exe(unsigned long cutoff, char c,
-						const char *nptr, int sign)
+static int	ft_has_sign(char c)
 {
-	int				cutlim;
-	unsigned long	acc;
+	if (c == '-')
+		return (-1);
+	else
+		return (1);
+}
 
-	cutlim = cutoff % 10;
-	cutoff /= 10;
-	acc = 0;
-	while ('0' <= c && c <= '9')
-	{
-		c -= '0';
-		if (acc > cutoff || (acc == cutoff && c > cutlim))
-			return (ft_is_overflow_or_underflow(sign));
-		acc = acc * 10 + c;
-		c = *nptr++;
-	}
-	return (acc * sign);
+static unsigned long	ft_determine_cutoff_value(int sign)
+{
+	if (sign >= 0)
+		return (LONG_MAX);
+	else
+		return (LONG_MAX);
 }
 
 int	ft_atoi(const char *nptr)
 {
-	char			c;
 	int				sign;
+	int				cutlim;
 	unsigned long	cutoff;
+	unsigned long	value;
+	int				num;
 
-	c = *nptr++;
-	while (ft_isspace((unsigned char)c))
-		c = *nptr++;
-	if (c == '-')
+	while (ft_isspace((unsigned char)(*nptr)))
+		nptr++;
+	sign = ft_has_sign(*nptr);
+	if (*nptr == '+' || *nptr == '-')
+		nptr++;
+	cutoff = ft_determine_cutoff_value(sign);
+	cutlim = cutoff % 10;
+	cutoff /= 10;
+	value = 0;
+	while (1)
 	{
-		sign = -1;
-		c = *nptr++;
-		cutoff = LONG_MIN;
+		num = *nptr++ - '0';
+		if (!(0 <= num && num <= 9))
+			break ;
+		if (value > cutoff || (value == cutoff && num > cutlim))
+			return (ft_is_overflow_or_underflow(sign));
+		value = value * 10 + num;
 	}
-	else
-	{
-		sign = 1;
-		if (c == '+')
-			c = *nptr++;
-		cutoff = LONG_MAX;
-	}
-	return (ft_atoi_exe(cutoff, c, nptr, sign));
+	return ((int)(sign * value));
 }
