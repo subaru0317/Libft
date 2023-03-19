@@ -6,75 +6,65 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:22:55 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/18 20:36:58 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 14:36:33 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_itoa_zero(void)
+static size_t	ft_num_len(int n)
 {
-	char	*str;
+	size_t			len;
+	unsigned int	plus_n;
 
-	str = (char *)ft_calloc(2, sizeof(char));
-	if (!str)
-		return (NULL);
-	*str = '0';
-	return (str);
+	len = 0;
+	if (n < 0)
+	{
+		plus_n = n * -1;
+		len++;
+	}
+	else
+		plus_n = n;
+	while (1)
+	{
+		len++;
+		plus_n /= 10;
+		if (plus_n == 0)
+			break ;
+	}
+	return (len);
 }
 
-static char	*ft_itoa_exe(size_t len, size_t flag, long long n_tmp)
+static unsigned int	ft_abs(int n)
 {
-	char	*str;
-	size_t	i;
-
-	str = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	if (flag)
-		str[i++] = '-';
-	i = len;
-	if (n_tmp < 0)
-		n_tmp *= -1;
-	while (i--)
-	{
-		if (flag && i == 0)
-			break ;
-		str[i] = n_tmp % 10 + '0';
-		n_tmp /= 10;
-	}
-	return (str);
+	if (n < 0)
+		return (-1 * n);
+	else
+		return (n);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t		len;
-	long long	n_tmp;
-	size_t		flag;
+	char			*str;
+	size_t			i;
+	unsigned int	plus_n;
 
-	len = 0;
-	flag = 0;
-	n_tmp = n;
-	if (n_tmp == 0)
-		return (ft_itoa_zero());
-	if (n_tmp < 0)
+	str = (char *)ft_calloc(ft_num_len(n) + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	if (n < 0)
+		str[0] = '-';
+	plus_n = ft_abs(n);
+	i = ft_num_len(n) - 1;
+	while (1)
 	{
-		len++;
-		flag = 1;
-		n_tmp *= -1;
+		if (i == 0 && n < 0)
+			break ;
+		str[i] = plus_n % 10 + '0';
+		if (i == 0 && n >= 0)
+			break ;
+		plus_n /= 10;
+		i--;
 	}
-	while (n_tmp > 0)
-	{
-		n_tmp /= 10;
-		len++;
-	}
-	n_tmp = n;
-	return (ft_itoa_exe(len, flag, n_tmp));
-}
-
-#include <stdio.h>
-int main(void)
-{
-	printf("%s\n", ft_itoa(0));
+	return (str);
 }
