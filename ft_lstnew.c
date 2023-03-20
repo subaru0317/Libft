@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:49:06 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/14 15:01:45 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 16:34:19 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*acc;
 
-	acc = malloc(sizeof(t_list));
+	acc = (t_list *)malloc(sizeof(t_list));
 	if (!acc)
 		return (NULL);
 	acc->content = content;

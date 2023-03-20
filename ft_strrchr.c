@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:00:35 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/14 15:09:33 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/20 13:50:31 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = ft_strlen(s);
-	while (i >= 0)
+	while (1)
 	{
 		if (s[i] == (char)c)
 			return ((char *)(s + i));
-		--i;
+		if (i == 0)
+			break ;
+		i--;
 	}
 	return (NULL);
 }

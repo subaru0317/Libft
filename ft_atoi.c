@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:27:39 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/19 13:17:44 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 16:45:47 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int	ft_isspace(unsigned char c)
 	return (0);
 }
 
-static int	ft_is_overflow_or_underflow(int sign)
+static unsigned long	ft_is_overflow_or_underflow(int sign)
 {
 	if (sign < 0)
-		return ((int)LONG_MIN);
+		return (LONG_MIN);
 	else
-		return ((int)LONG_MAX);
+		return (LONG_MAX);
 }
 
 static int	ft_has_sign(char c)
@@ -35,14 +35,6 @@ static int	ft_has_sign(char c)
 		return (-1);
 	else
 		return (1);
-}
-
-static unsigned long	ft_determine_cutoff_value(int sign)
-{
-	if (sign >= 0)
-		return (LONG_MAX);
-	else
-		return (LONG_MAX);
 }
 
 int	ft_atoi(const char *nptr)
@@ -58,7 +50,7 @@ int	ft_atoi(const char *nptr)
 	sign = ft_has_sign(*nptr);
 	if (*nptr == '+' || *nptr == '-')
 		nptr++;
-	cutoff = ft_determine_cutoff_value(sign);
+	cutoff = ft_is_overflow_or_underflow(sign);
 	cutlim = cutoff % 10;
 	cutoff /= 10;
 	value = 0;
@@ -68,7 +60,7 @@ int	ft_atoi(const char *nptr)
 		if (!(0 <= num && num <= 9))
 			break ;
 		if (value > cutoff || (value == cutoff && num > cutlim))
-			return (ft_is_overflow_or_underflow(sign));
+			return ((int)ft_is_overflow_or_underflow(sign));
 		value = value * 10 + num;
 	}
 	return ((int)(sign * value));

@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:30:12 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/14 16:14:28 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 15:33:58 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
-	unsigned char		*dst_ptr;
-	const unsigned char	*src_ptr;
+	void	*ptr;
 
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	dst_ptr = (unsigned char *)dst;
-	src_ptr = (const unsigned char *)src;
+	ptr = dst;
+	if (dst == src)
+		return (ptr);
 	while (len--)
-		*dst_ptr++ = *src_ptr++;
-	return (dst);
+		*(unsigned char *)dst++ = *(const unsigned char *)src++;
+	return (ptr);
 }

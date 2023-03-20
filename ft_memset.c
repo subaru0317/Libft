@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:11:14 by smihata           #+#    #+#             */
-/*   Updated: 2023/02/27 15:59:32 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 15:35:23 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memset(void *dest, int c, size_t len)
 {
-	unsigned char	*ptr;
+	void	*ptr;
 
 	ptr = dest;
 	while (len--)
-		*ptr++ = c;
-	return (dest);
+		*(unsigned char *)dest++ = (unsigned char)c;
+	return (ptr);
 }

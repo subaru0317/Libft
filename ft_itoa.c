@@ -6,7 +6,7 @@
 /*   By: smihata <smihata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:22:55 by smihata           #+#    #+#             */
-/*   Updated: 2023/03/19 14:36:33 by smihata          ###   ########.fr       */
+/*   Updated: 2023/03/19 16:51:29 by smihata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	ft_num_len(int n)
 static unsigned int	ft_abs(int n)
 {
 	if (n < 0)
-		return (-1 * n);
+		return (-n);
 	else
 		return (n);
 }
